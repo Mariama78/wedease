@@ -1,0 +1,496 @@
+/* Reset des marges et paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Conteneur général */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../images/wedding.png') no-repeat center center/cover;
+    background-attachment: fixed;
+    color: #333;
+}
+
+
+/* Sections pleine page */
+.full-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+/* Image de fond pour la page d'accueil */
+.background-image {
+    background: url('../images/wedding.png') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    top: 5%;
+    width: 100%;
+    z-index: 2;
+}
+
+header nav {
+    position: absolute;
+    gap: 15px;
+
+}
+.logo-container{
+    position: absolute;
+    top: 30%;
+    left: 5%;
+}
+
+header .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header .btn:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Contenu de la page */
+.content {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 1;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.content p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Formulaire principal */
+.form-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.form-container p {
+    font-style: italic;
+    color: #433d3d;
+    margin-bottom: 10px;
+}
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: bold;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-container input,
+.form-container textarea,
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.form-container button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Formulaire des tâches en bas */
+.task-status-form {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Titres des sections */
+.task-list-container h3,
+.task-status-container h3 {
+    text-align: center;
+    color: #444;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+/* Listes */
+#task-list,
+#in-progress-list,
+#completed-list {
+    list-style: none;
+    padding: 0;
+}
+
+#task-list li,
+#in-progress-list li,
+#completed-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background: #f7f7f7;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#task-list li strong,
+#in-progress-list li strong,
+#completed-list li strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Boutons des tâches */
+button {
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Bouton "En cours" */
+button[onclick="markInProgress(this)"] {
+    background-color: #f44336;
+}
+
+button[onclick="markInProgress(this)"]:hover {
+    background-color: #d32f2f;
+}
+
+/* Bouton "Terminé" */
+button[onclick="markCompleted(this)"] {
+    background-color: #2196F3;
+}
+
+button[onclick="markCompleted(this)"]:hover {
+    background-color: #1976D2;
+}
+
+/* Bouton pour enregistrer */
+.save-tasks-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.save-tasks-btn:hover {
+    background-color: #218838;
+}
+
+
+
+header .logo {
+    height: 90px;
+}
+
+header a {
+    text-decoration: none;
+    padding: 10px 20px;
+    color: #007BFF;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+header a:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* Conteneur de services */
+.services-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.services-container h1 {
+    color: #333;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.services-container span {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.service {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.service h2 {
+    color: #333;
+    font-size: 24px;
+}
+
+.service p {
+    margin: 10px 0 20px;
+    color: #555;
+}
+
+.service-btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.service-btn:hover {
+    background-color: #0056b3;
+}
+/* Résumé */
+.summary-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    background: rgba(245, 245, 245, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.summary-container h3 {
+    color: #444;
+}
+
+.summary-container p{
+    margin: 10px 0;
+    font-size: 15px;
+    color: #444444;
+}
+
+/* Liste des dépenses */
+.expense-list-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    background: rgba(234, 229, 229, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.expense-list-container ul{
+    list-style: none;
+    padding: 0;
+    color: #444;
+}
+.expense-list-container h3{
+    color: #444;
+}
+
+.expense-list-container li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: rgba(239, 236, 236, 0.9);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.remove-btn {
+    background-color: #e74c3c;
+    color: #f8f3f3;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Conteneur général du tableau de bord */
+.dashboard-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #333;
+    text-align: center;
+    margin-left: 5px;
+}
+
+/* Titres */
+.dashboard-container h1 {
+    font-size: 36px;
+    color: #007BFF;
+    margin-bottom: 15px;
+}
+
+.dashboard-container h2 {
+    margin: 20px 0;
+    font-size: 24px;
+    color: #333;
+    text-align: left;
+}
+
+/* Statistiques générales */
+.stats-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.card {
+    width: 28%;
+    padding: 20px;
+    background: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 18px;
+    color: #555;
+}
+
+.card p {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Liste des activités */
+.activities ul,
+.current-events ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.activities li,
+.current-events li {
+    background: #f7f7f7;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Actions rapides */
+.quick-actions .actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.action-btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Liste des invités */
+.guest-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.guest-list li {
+    background: #f7f7f7;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

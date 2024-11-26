@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculateur de Budget - WedEase</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script>
+    // Variables globales pour suivre les finances
+    let totalBudget = 0;
+    let totalExpenses = 0;
+
+    function setBudget(event) {
+      event.preventDefault();
+
+      const budgetInput = document.getElementById('budget-input').value.trim();
+      if (!budgetInput || isNaN(budgetInput) || budgetInput <= 0) {
+        alert("Veuillez entrer un montant valide pour le budget !");
+        return;
+      }
+
+      totalBudget = parseFloat(budgetInput);
+      document.getElementById('total-budget').textContent = totalBudget.toFixed(2);
+      updateBalance();
+
+      // Réinitialiser le formulaire
+      document.getElementById('budget-form').reset();
+    }
+
+    function addExpense(event) {
+      event.preventDefault();
+
+      const expenseName = document.getElementById('expense-name').value.trim();
+      const expenseAmount = document.getElementById('expense-amount').value.trim();
+
+      if (!expenseName) {
+        alert("Veuillez entrer le nom de la dépense !");
+        return;
+      }
+
+      if (!expenseAmount || isNaN(expenseAmount) || expenseAmount <= 0) {
+        alert("Veuillez entrer un montant valide pour la dépense !");
+        return;
+      }
+
+      const expenseValue = parseFloat(expenseAmount);
+
+      // Ajouter la dépense à la liste
+      const expenseList = document.getElementById('expense-list');
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `
+        <strong>${expenseName}</strong>: ${expenseValue.toFixed(2)} $
+        <button onclick="removeExpense(this, ${expenseValue})" class="remove-btn">Supprimer</button>
+      `;
+      expenseList.appendChild(listItem);
+
+      // Mettre à jour les finances
+      totalExpenses += expenseValue;
+      updateBalance();
+
+      // Réinitialiser le formulaire
+      document.getElementById('expense-form').reset();
+    }
+
+    function removeExpense(button, expenseValue) {
+      // Supprimer l'élément de la liste
+      const listItem = button.parentElement;
+      listItem.remove();
+
+      // Mettre à jour les finances
+      totalExpenses -= expenseValue;
+      updateBalance();
+    }
+
+    function updateBalance() {
+      const remainingBalance = totalBudget - totalExpenses;
+      document.getElementById('total-expenses').textContent = totalExpenses.toFixed(2);
+      document.getElementById('remaining-balance').textContent = remainingBalance.toFixed(2);
+
+      const balanceElement = document.getElementById('remaining-balance');
+      if (remainingBalance < 0) {
+        balanceElement.style.color = 'red'; // Solde négatif
+      } else {
+        balanceElement.style.color = 'green'; // Solde positif
+      }
+    }
+  </script>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="index.html" class="btn">Accueil</a>
+    <a href="services.html" class="btn">Services</a>
+  </nav>
+</header>
+
+<div class="form-container">
+  <h2>Calculateur de Budget</h2>
+  <form id="budget-form" onsubmit="setBudget(event)">
+    <label for="budget-input">Définir votre budget total :</label>
+    <input type="number" id="budget-input" placeholder="Ex : 5000" required>
+    <button type="submit">Définir le budget</button>
+  </form>
+</div>
+
+<div class="form-container">
+  <h3>Ajouter une dépense</h3>
+  <form id="expense-form" onsubmit="addExpense(event)">
+    <label for="expense-name">Nom de la dépense :</label>
+    <input type="text" id="expense-name" placeholder="Ex : Fleuriste" required>
+
+    <label for="expense-amount">Montant de la dépense :</label>
+    <input type="number" id="expense-amount" placeholder="Ex : 200" required>
+
+    <button type="submit">Ajouter la dépense</button>
+  </form>
+</div>
+
+<div class="summary-container">
+  <h3>Résumé de votre budget</h3>
+  <p><strong>Budget total :</strong> <span id="total-budget">0.00</span> $</p>
+  <p><strong>Dépenses totales :</strong> <span id="total-expenses">0.00</span> $</p>
+  <p><strong>Solde restant :</strong> <span id="remaining-balance" style="color: green;">0.00</span> $</p>
+</div>
+
+<div class="expense-list-container">
+  <h3>Liste des dépenses</h3>
+  <ul id="expense-list">
+    <!-- Les dépenses ajoutées apparaîtront ici -->
+  </ul>
+</div>
+</body>
+</html>

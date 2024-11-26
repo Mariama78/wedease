@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planification - WedEase</title>
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <script>
+    function addTask(event) {
+      event.preventDefault();
+
+      const title = document.getElementById('title').value.trim();
+      const description = document.getElementById('description').value.trim();
+
+      if (!title) {
+        alert("Le titre de la tâche est requis !");
+        return;
+      }
+
+      const taskItem = document.createElement('li');
+      taskItem.innerHTML = `
+        <strong>${title}</strong>: ${description || "Sans description"}
+        <button onclick="markInProgress(this)">En cours</button>
+        <button onclick="markCompleted(this)">Terminé</button>
+      `;
+
+      document.getElementById('task-list').appendChild(taskItem);
+
+      document.getElementById('task-form').reset();
+    }
+
+    function markInProgress(button) {
+      const task = button.parentElement;
+      button.remove(); // Supprime le bouton "En cours"
+      document.getElementById('in-progress-list').appendChild(task);
+    }
+
+    function markCompleted(button) {
+      const task = button.parentElement;
+      button.remove(); // Supprime le bouton "Terminé"
+      document.getElementById('completed-list').appendChild(task);
+    }
+  </script>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="index.html" class="btn">Accueil</a>
+  </nav>
+</header>
+
+<div class="form-container">
+  <h2>Planification des tâches</h2>
+  <form id="task-form" onsubmit="addTask(event)">
+    <label for="title">Titre de la tâche :</label>
+    <input type="text" id="title" name="title" placeholder="Entrez le titre de la tâche" required>
+
+    <label for="description">Description :</label>
+    <textarea id="description" name="description" placeholder="Entrez une description"></textarea>
+
+    <button type="submit">Ajouter la tâche</button>
+  </form>
+</div>
+
+<!-- Section des listes dans un formulaire en bas -->
+<form class="task-status-form">
+  <div class="task-list-container">
+    <h3>Liste des tâches</h3>
+    <ul id="task-list">
+      <!-- Les tâches ajoutées apparaîtront ici -->
+    </ul>
+  </div>
+
+  <div class="task-status-container">
+    <h3>Tâches en cours</h3>
+    <ul id="in-progress-list">
+      <!-- Les tâches en cours apparaîtront ici -->
+    </ul>
+
+    <h3>Tâches terminées</h3>
+    <ul id="completed-list">
+      <!-- Les tâches terminées apparaîtront ici -->
+    </ul>
+  </div>
+  <button type="submit" class="save-tasks-btn">Enregistrer le statut des tâches</button>
+</form>
+</body>
+</html>

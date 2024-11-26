@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion - WedEase</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script>
+    function handleLogin(event) {
+      event.preventDefault(); // Empêche le rechargement de la page par défaut
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      // Vérifier si l'email est valide
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Veuillez entrer une adresse email valide !");
+        return;
+      }
+
+      // Vérifier si le mot de passe est rempli
+      if (!password) {
+        alert("Veuillez entrer un mot de passe !");
+        return;
+      }
+
+      // Si les validations passent, rediriger vers le tableau de bord
+      alert("Connexion réussie !");
+      window.location.href = "dashboard.html"; // Redirection vers le tableau de bord
+    }
+  </script>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="index.html" class="btn">Accueil</a>
+    <a href="services.html" class="btn">Services</a>
+  </nav>
+</header>
+
+<div class="form-container">
+  <h2>Connexion</h2>
+  <form id="login-form" onsubmit="handleLogin(event)">
+
+    <label for="email">Adresse Email :</label>
+    <input type="email" id="email" name="email" placeholder="Votre email" required>
+
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
+
+    <button type="submit">Se connecter</button>
+  </form>
+</div>
+</body>
+</html>

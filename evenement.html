@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créer un événement - WedEase</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script>
+    function handleEventCreation(event) {
+      event.preventDefault();
+
+      const eventName = document.getElementById('event-name').value.trim();
+      const eventDate = document.getElementById('event-date').value.trim();
+      const eventLocation = document.getElementById('event-location').value.trim();
+      const eventType = document.getElementById('event-type').value.trim();
+
+      if (!eventName || !eventDate || !eventLocation || !eventType) {
+        alert("Veuillez remplir tous les champs obligatoires !");
+        return;
+      }
+
+      // Simuler la création de l'événement (peut être connecté à un backend plus tard)
+      alert(`Événement "${eventName}" créé avec succès pour le ${eventDate} à ${eventLocation}.`);
+
+      // Réinitialiser le formulaire
+      document.getElementById('event-form').reset();
+    }
+
+    function addGuest(event) {
+      event.preventDefault();
+
+      const guestName = document.getElementById('guest-name').value.trim();
+      if (!guestName) {
+        alert("Veuillez entrer le nom de l'invité !");
+        return;
+      }
+
+      const guestList = document.getElementById('guest-list');
+      const listItem = document.createElement('li');
+      listItem.textContent = guestName;
+
+      guestList.appendChild(listItem);
+
+      document.getElementById('guest-name').value = ""; // Réinitialiser le champ
+    }
+  </script>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="index.html" class="btn">Accueil</a>
+    <a href="services.html" class="btn">Services</a>
+    <a href="dashboard.html" class="btn">Tableau de bord</a>
+  </nav>
+</header>
+
+<div class="form-container">
+  <h2>Créer un nouvel événement</h2>
+  <form id="event-form" onsubmit="handleEventCreation(event)">
+    <label for="event-name">Nom de l'événement :</label>
+    <input type="text" id="event-name" placeholder="Ex : Mariage de Sophie et Jean" required>
+
+    <label for="event-date">Date de l'événement :</label>
+    <input type="date" id="event-date" required>
+
+    <label for="event-location">Lieu :</label>
+    <input type="text" id="event-location" placeholder="Ex : Salle des fêtes de chicoutimi" required>
+
+    <label for="event-type">Type d'événement :</label>
+    <select id="event-type" required>
+      <option value="" disabled selected>Choisissez un type</option>
+      <option value="Mariage">Mariage</option>
+      <option value="Anniversaire">Anniversaire</option>
+      <option value="Réunion">Réunion</option>
+      <option value="Autre">Autre</option>
+    </select>
+
+    <button type="submit">Créer l'événement</button>
+  </form>
+</div>
+
+<div class="form-container">
+  <h3>Ajouter des invités</h3>
+  <form id="guest-form" onsubmit="addGuest(event)">
+    <label for="guest-name">Nom de l'invité :</label>
+    <input type="text" id="guest-name" placeholder="Ex : Jean Dupont" required>
+
+    <button type="submit">Ajouter l'invité</button>
+  </form>
+  <ul id="guest-list" class="guest-list">
+    <!-- Liste des invités ajoutés -->
+  </ul>
+</div>
+
+<div class="form-container">
+  <h3>Notes spéciales</h3>
+  <textarea id="special-notes" rows="5" placeholder="Ajoutez des notes importantes ou des tâches spécifiques pour cet événement..."></textarea>
+</div>
+</body>
+</html>

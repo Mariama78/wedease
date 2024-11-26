@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Recherche de Prestataires</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+<header>
+  <nav>
+    <a href="index.html" class="btn">Accueil</a>
+    <a href="services.html" class="btn">Services</a>
+  </nav>
+</header>
+
+<div class="form-container">
+  <h2>Contactez-nous</h2>
+  <p>Remplissez ce formulaire pour rechercher un prestataire ou nous poser une question. Nous vous répondrons dans les plus brefs délais.</p>
+  <form>
+    <label for="name">Nom :</label>
+    <input type="text" id="name" name="name" placeholder="Votre nom" required>
+
+    <label for="email">Adresse Email :</label>
+    <input type="email" id="email" name="email" placeholder="Votre email" required>
+
+    <label for="phone">Numéro de Téléphone :</label>
+    <input type="tel" id="phone" name="phone" placeholder="Votre numéro" required>
+
+    <label for="message">Message :</label>
+    <textarea id="message" name="message" placeholder="Décrivez votre besoin (type de prestataire, budget, etc.)" required></textarea>
+
+    <button type="submit">Envoyer</button>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau de Bord - WedEase</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script>
+    // Simulations de données pour remplir le tableau de bord
+    const activities = [
+      { date: "2024-11-01", description: "Contacté un fleuriste" },
+      { date: "2024-11-10", description: "Planifié un rendez-vous avec un traiteur" },
+      { date: "2024-11-15", description: "Ajouté une tâche : Réserver la salle" },
+    ];
+
+    const currentEvents = [
+      { title: "Choix du photographe", deadline: "2024-11-20" },
+      { title: "Révision du budget", deadline: "2024-11-25" },
+    ];
+
+    function loadDashboard() {
+      // Charger les activités passées
+      const activityList = document.getElementById("activity-list");
+      activities.forEach(activity => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${activity.date} - ${activity.description}`;
+        activityList.appendChild(listItem);
+      });
+
+      // Charger les événements en cours
+      const eventList = document.getElementById("event-list");
+      currentEvents.forEach(event => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${event.title} (Date limite : ${event.deadline})`;
+        eventList.appendChild(listItem);
+      });
+    }
+
+    // Appel au chargement de la page
+    window.onload = loadDashboard;
+  </script>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="index.html" class="btn">Accueil</a>
+    <a href="services.html" class="btn">Services</a>
+    <a href="contact.html" class="btn">Contact</a>
+  </nav>
+</header>
+
+<div class="dashboard-container">
+  <h1>Bienvenue dans votre tableau de bord</h1>
+  <p>Consultez toutes vos activités passées, vos événements en cours, et gérez vos tâches et finances.</p>
+
+  <!-- Statistiques générales -->
+  <section class="stats">
+    <h2>Statistiques générales</h2>
+    <div class="stats-cards">
+      <div class="card">
+        <h3>Tâches totales</h3>
+        <p>15</p>
+      </div>
+      <div class="card">
+        <h3>Dépenses</h3>
+        <p>3500 $</p>
+      </div>
+      <div class="card">
+        <h3>Prestataires contactés</h3>
+        <p>4</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activités passées -->
+  <section class="activities">
+    <h2>Activités passées</h2>
+    <ul id="activity-list">
+      <!-- Les activités passées seront chargées ici -->
+    </ul>
+  </section>
+
+  <!-- Événements en cours -->
+  <section class="current-events">
+    <h2>Événements en cours</h2>
+    <ul id="event-list">
+      <!-- Les événements en cours seront chargés ici -->
+    </ul>
+  </section>
+
+  <!-- Actions rapides -->
+  <section class="quick-actions">
+    <h2>Actions rapides</h2>
+    <div class="actions">
+      <a href="planning.html" class="action-btn">Ajouter une tâche</a>
+      <a href="budget.html" class="action-btn">Calculer le budget</a>
+      <a href="evenement.html" class="action-btn">Créer un événement</a>
+    </div>
+  </section>
+</div>
+</body>
+</html>
